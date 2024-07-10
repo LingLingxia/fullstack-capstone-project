@@ -65,6 +65,13 @@ const handleSubmit = async (e) => {
 
     const payload = { ...updatedDetails };
     const response = await fetch(`${urlConfig.backendUrl}/api/auth/update`, {
+      method:"put",
+      headers:{
+        "Authorization":`Bearer ${authtoken}`,
+        "Content-Type":"application/json",
+        "Email":email
+      },
+      body:JSON.stringify(payload)
       //Step 1: Task 1
       //Step 1: Task 2
       //Step 1: Task 3
@@ -73,7 +80,9 @@ const handleSubmit = async (e) => {
     if (response.ok) {
       // Update the user details in session storage
       //Step 1: Task 4
+      setUserName(updatedDetails.name)
       //Step 1: Task 5
+      sessionStorage.setItem("name", updatedDetails.name);
       setUserDetails(updatedDetails);
       setEditMode(false);
       // Display success message to the user
@@ -120,10 +129,10 @@ return (
 </form>
 ) : (
 <div className="profile-details">
-<h1>Hi, {userDetails.name}</h1>
-<p> <b>Email:</b> {userDetails.email}</p>
-<button onClick={handleEdit}>Edit</button>
-<span style={{color:'green',height:'.5cm',display:'block',fontStyle:'italic',fontSize:'12px'}}>{changed}</span>
+  <h1>Hi, {userDetails.name}</h1>
+  <p> <b>Email:</b> {userDetails.email}</p>
+  <button onClick={handleEdit}>Edit</button>
+  <span style={{color:'green',height:'.5cm',display:'block',fontStyle:'italic',fontSize:'12px'}}>{changed}</span>
 </div>
 )}
 </div>
