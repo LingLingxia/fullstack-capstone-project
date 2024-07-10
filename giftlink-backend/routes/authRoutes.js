@@ -65,7 +65,7 @@ router.post('/login', async (req, res) => {
         
         if (theUser) {
             // Task 4: Task 4: Check if the password matches the encrypyted password and send appropriate message on mismatch
-            let result = await bcryptjs.compare(req.body.password, theUser.password)
+            let result = await bcryptjs.compare(req.body.password, theUser.password);
             if(!result) {
                     logger.error('Passwords do not match');
                     return res.status(404).json({ error: 'Wrong pasword' });
