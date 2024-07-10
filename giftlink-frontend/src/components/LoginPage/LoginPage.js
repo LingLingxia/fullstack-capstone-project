@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import './LoginPage.css';
 //Task 1: Import urlConfig from `giftlink-frontend/src/config.js`
 import {urlConfig} from '../../config';
@@ -26,7 +26,7 @@ function LoginPage() {
     const handleLogin = async () => {
           try{
             //first task
-          const response = await fetch(`/api/auth/login`, {
+          const response = await fetch(`${urlConfig.backendUrl}/api/auth/login`, {
                 method:"POST",
                 headers:{
                   "content-type":"application/json",
@@ -74,7 +74,7 @@ function LoginPage() {
     return (
       <div className="container mt-5">
         <div className="row justify-content-center">
-          <div className="col-md-6 col-lg-4">
+          <div className="col-md-6">
             <div className="login-card p-4 border rounded">
               <h2 className="text-center mb-4 font-weight-bold">Login</h2>
 
